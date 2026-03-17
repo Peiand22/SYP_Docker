@@ -1,0 +1,23 @@
+GET http://localhost:8080/api/artists/3
+
+###
+GET http://localhost:8080/api/events?page=0&size=5&sort=title,asc
+
+
+###
+GET http://localhost:8080/api/ratings/event/1
+
+###
+
+GET http://localhost:8080/api/events/artist/3
+
+###
+POST http://localhost:8080/api/ratings/3
+Content-Type: application/json
+
+{
+  "stars": 5,
+  "comment": "Greetings from Anton Peinohpf",
+  "createdAt": "2026-02-15T20:30:00"
+}
+
