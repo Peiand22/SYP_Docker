@@ -36,12 +36,11 @@ jobs:
       # 5️⃣ Docker-Image bauen
       - name: Build Docker image
         run: |
-          IMAGE=ghcr.io/${{ github.repository_owner }}/syp_backend:${{ github.sha }}
-          docker build -t $IMAGE ./docker  # Dockerfile im Unterordner 'docker'
+          IMAGE=ghcr.io/peiand22/syp_backend:${{ github.sha }}
+          docker build -t $IMAGE ./docker
 
       # 6️⃣ Docker-Image pushen
       - name: Push Docker image
         run: |
-          IMAGE=ghcr.io/${{ github.repository_owner || github.actor || toLowerCase }}/syp_backend:${{ github.sha }}
+          IMAGE=ghcr.io/peiand22/syp_backend:${{ github.sha }}
           docker push $IMAGE
-          
