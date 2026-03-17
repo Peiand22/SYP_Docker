@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: postgres_4d
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: _exa_vibecheck
+    ports:
+        - "5432:5432"
+
+  backend:
+    image: ghcr.io/peiand22/backend:latest
+    ports:
+            - "8080:8080"
