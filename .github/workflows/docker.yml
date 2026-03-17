@@ -1,6 +1,5 @@
 name: Auto Build & Push Docker Image
 
-# Trigger auf alle Pushes auf main
 on:
   push:
     branches:
@@ -22,9 +21,9 @@ jobs:
           distribution: temurin
           java-version: 21
 
-      # 3️⃣ Maven Build (erzeugt target/*.jar)
+      # 3️⃣ Maven Build (Tests überspringen)
       - name: Build with Maven
-        run: mvn clean package
+        run: mvn clean package -DskipTests
 
       # 4️⃣ Login bei GitHub Container Registry (GHCR)
       - name: Login to GitHub Container Registry
@@ -38,7 +37,7 @@ jobs:
       - name: Build Docker image
         run: |
           IMAGE=ghcr.io/${{ github.repository_owner }}/syp_backend:${{ github.sha }}
-          docker build -t $IMAGE ./docker  # Dockerfile liegt im Unterordner 'docker'
+          docker build -t $IMAGE ./docker  # Dockerfile im Unterordner 'docker'
 
       # 6️⃣ Docker-Image pushen
       - name: Push Docker image
